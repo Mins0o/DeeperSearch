@@ -60,18 +60,18 @@ else:
 if cifar_:
 	log_entry += "Cifar "
 	if undefended:
-		from madryCifarUndefWrapper import *
-		target_set=load(open("indices.pkl","rb"))
+		from model_interfaces.madryCifarUndefWrapper import *
+		target_set=load(open("./model_interfaces/indices.pkl","rb"))
 		log_entry += "Undefended "
 	else:
-		from madryCifarWrapper import *
-		target_set=load(open("def_indices.pkl","rb"))
+		from model_interfaces.madryCifarWrapper import *
+		target_set=load(open("./model_interfaces/def_indices.pkl","rb"))
 		log_entry += "Defended "
 	img_x, img_y = 32,32
 	grs = 4
 	batch_size = 64
 elif spectro_:
-	from spectroWrapper import *
+	from model_interfaces.spectroWrapper import *
 	target_set = range(50)
 	log_entry += "spetcro"
 	img_x, img_y = 103, -1
@@ -79,14 +79,14 @@ elif spectro_:
 	grs = 50
 	batch_size = 15
 else:
-	from imgntWrapper import *
+	from model_interfaces.imgntWrapper import *
 	target_set = range(50)
 	log_entry += "Imagenet "
 
 # Creating folder to store results
-if not exists("DSBatched"):
-    mkdir("DSBatched")
-path="DSBatched/"+str(datetime.now()).replace(":","_")+"/"
+if not exists("tempResults"):
+    mkdir("tempResults")
+path="tempResults/"+str(datetime.now()).replace(":","_")+"/"
 mkdir(path)
 with open(path+"log.txt","w") as log_path:
 	# Comment this line to see results in console!
@@ -104,9 +104,8 @@ with open(path+"log.txt","w") as log_path:
 		#def deepSearch(cifar_, image, label, model, distortion_cap, 
 		#	group_size= 16, max_calls = 10000, batch_size = 64, verbose = False,
 		#	targeted = False, target = None, proba = True):
-		if spectro_: 
-			kwargs = {'j': j}
-		ret = deepSearch(cifar_, spectro_, x_test[j], y_test[j], mymodel, 5/256, 
+		kwargs = {'j': j}
+		ret = deepSearch(cifar_, spectro_, x_test[j], y_test[j], mymodel, 20/256, 
 			group_size = grs, max_calls = 10000, batch_size = batch_size, verbose = False, 
 			targeted = targeted, target = target, proba = proba, **kwargs)
 		if spectro_:

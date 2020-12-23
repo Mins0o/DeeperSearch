@@ -1,0 +1,79 @@
+group_size  50  batch_size  15
+Non-targeted spetcro
+
+Starting attack on image 0   0
+Original class: Cat
+Final class:  human
+Attack Succeeded with 161 queries, success rate is	 100.0
+
+Starting attack on image 1   1
+Original class: Cat
+Final class:  human
+Attack Succeeded with 68 queries, success rate is	 100.0
+
+Starting attack on image 2   2
+Original class: Cat
+Final class:  human
+Attack Succeeded with 130 queries, success rate is	 100.0
+
+Starting attack on image 3   3
+Original class: dog
+Final class:  kid
+Attack Succeeded with 202 queries, success rate is	 100.0
+
+Starting attack on image 4   4
+Original class: dog
+Final class:  Cat
+Attack Succeeded with 262 queries, success rate is	 100.0
+
+Starting attack on image 5   5
+Original class: dog
+Final class:  kid
+Attack Succeeded with 285 queries, success rate is	 100.0
+
+Starting attack on image 6   6
+Original class: parrot
+Final class:  Cat
+Attack Succeeded with 6 queries, success rate is	 100.0
+
+Starting attack on image 7   7
+Original class: parrot
+Final class:  human
+Attack Succeeded with 10 queries, success rate is	 100.0
+
+Starting attack on image 8   8
+Original class: parrot
+Final class:  human
+Attack Succeeded with 6 queries, success rate is	 100.0
+
+Starting attack on image 9   9
+Original class: human
+Final class:  Cat
+Attack Succeeded with 68 queries, success rate is	 100.0
+
+Starting attack on image 10   10
+Original class: human
+Final class:  Cat
+Attack Succeeded with 68 queries, success rate is	 100.0
+
+Starting attack on image 11   11
+Original class: human
+Final class:  Cat
+Attack Succeeded with 6 queries, success rate is	 100.0
+
+Starting attack on image 12   12
+Original class: kid
+Final class:  dog
+Attack Succeeded with 256 queries, success rate is	 100.0
+
+Starting attack on image 13   13
+Original class: kid
+Final class:  dog
+Attack Succeeded with 233 queries, success rate is	 100.0
+
+Starting attack on image 14   14
+Original class: kid
+Final class:  dog
+Attack Succeeded with 119 queries, success rate is	 100.0
+
+Starting attack on image 15   15

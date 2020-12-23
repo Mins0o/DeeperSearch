@@ -61,26 +61,6 @@ def random_group_generation(size = (3,3), group_size = 2, options = ""):
 	size: Size of the image to be divided into groups.
 	group_size: Width of group if the group was square.
 	options: Reserved parameter in case of other grouping patterns.
-
-	This method outputs  a list with groups of indices. For example,
-		_______________
-	|0  |1  |  2|  3|	If this square was grouped into 4 pixels,
-	|___|___|___|___|	[[0, 1, 4, 5],
-	|4  |5  |  6|  7|	 [2, 3, 6, 7],
-	|___|___|___|___|	 [8, 9, 12, 13],
-	|   |   |   |   |	 [10, 11, 14, 15]]
-	|8__|9__|_10|_11|	will be the outcome.
-	|   |   |   |   |	
-	|12_|13_|_14|_15|	
-
-	If the groups cannot be sized equally, the rightmost and bottom
-	groups will be cropped."""
-	"""
-	idea behind the implementation is:
-	1. Fill the pixels with sequential indices
-	2. Slice and return the slices.
-
-	Channel invariant
   """
 	
 	# trivial case

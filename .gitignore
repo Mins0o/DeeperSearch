@@ -1,14 +1,15 @@
 __pycache__/
-DSBatched/
 checkpoint-70000.data-00000-of-00001
 checkpoint-79000.data-00000-of-00001
-/audios/cat/
-/audios/dog/
-/audios/human/
-/audios/kid/
-/audios/parrot/
-/audio_classifier/intermediary/dog/
-/audio_classifier/intermediary/cat/
-/audio_classifier/intermediary/kid/
-/audio_classifier/intermediary/human/
-/audio_classifier/intermediary/parrot/
+/audios/cat/New folder/
+/audios/dog/New folder/
+/audios/human/New folder/
+/audios/kid/New folder/
+/audios/parrot/Newfolder/
+/model_interfaces/audio_classifier/intermediary/dog/
+/model_interfaces/audio_classifier/intermediary/cat/
+/model_interfaces/audio_classifier/intermediary/kid/
+/model_interfaces/audio_classifier/intermediary/human/
+/model_interfaces/audio_classifier/intermediary/parrot/
+/tempResults/
+*.DS_Store

@@ -10,7 +10,7 @@ class Evaluator:
 		self.model = model
 		self.max_count = max_count
 		# Reads imagenet class label names from the file.
-		self.classes = json.load(open("classes.json","r"))
+		self.classes = json.load(open("./model_interfaces/imageNet_classes.json","r"))
 		self.classes = {int(k):v for k,v in self.classes.items()}
 		self.cifar_ = cifar_
 		self.spectro_ = spectro_

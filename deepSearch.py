@@ -64,7 +64,7 @@ def deepSearch(cifar_, spectro_, image, label, model, distortion_cap, group_size
 				# Line 7
 				target_class = np.argmin(rel_eval(current_image))
 				# Line 8
-				mutated_image = approx_min(current_image, lower, upper, rel_eval, grouping, batch_size, targeted, target_class, e, verbose)
+				mutated_image = approx_min(current_image, lower, upper, rel_eval, grouping, batch_size, targeted, target_class, e, verbose, **kwargs)
 				# If nothing changed, change the grouping
 				if True:#np.product(current_image == mutated_image):
 					regroup = True
@@ -88,7 +88,7 @@ def deepSearch(cifar_, spectro_, image, label, model, distortion_cap, group_size
 				# Line 7 but for fixed target
 				target_class = target
 				# Line 8
-				mutated_image = approx_min(current_image, lower, upper, rel_eval, grouping, batch_size, targeted, target, e, verbose)
+				mutated_image = approx_min(current_image, lower, upper, rel_eval, grouping, batch_size, targeted, target, e, verbose, **kwargs)
 				# If nothing changed, change the grouping
 				if np.product(current_image == mutated_image):
 					regroup = True
@@ -105,7 +105,7 @@ def deepSearch(cifar_, spectro_, image, label, model, distortion_cap, group_size
 		
 			
 
-def approx_min(image, lower, upper, rel_eval, grouping, batch_size, targeted, target_class, e, verbose):
+def approx_min(image, lower, upper, rel_eval, grouping, batch_size, targeted, target_class, e, verbose, **kwargs):
 	"""
 	image: The image to evaluate and mutate.
 	lower/upper: Lower and upper bounded images to use in mutation.
@@ -201,16 +201,16 @@ def approx_min(image, lower, upper, rel_eval, grouping, batch_size, targeted, ta
 				if not targeted: # For normal cases, go for the nearest hill
 					target_class = np.argmin(base_score)
 				if verbose:
-					probabilities = e.evaluate(image)
+					probabilities = e.evaluate(image, **kwargs)
 					current_class = np.argmax(probabilities)
 					new_score = base_score[target_class]
 					print(str(e.evaluation_count) + "/" + str(e.max_count) + " Score: {:.3e}".format(new_score),end="\t\t\t\t\t\n")
-					print("currentC: {0}...  currentP: {2:.3e}  targetP: {1:.3e}".format(e.idx2name(current_class)[:7], probabilities[target_class], np.max(probabilities)), end = '\r\b\r')
+					print("currentC: {0}...  currentP: {2:.3e}  targetP: {1:.3e}".format(e.idx2name(current_class)[:7], probabilities[target_class], np.max(probabilities)), end = '\r')
 				if e.evaluation_count > e. max_count:
 					break
 					
 					
-		else:# single channel (grayscale) # this part of the code is outdated
+		else:# single channel (grayscale)
 			group_index = group_number//3
 			
 			# Explorary step and evaluations
@@ -255,7 +255,7 @@ def approx_min(image, lower, upper, rel_eval, grouping, batch_size, targeted, ta
 				if not targeted: # For normal cases, go for the nearest hill
 					target_class = np.argmin(base_score)
 				if verbose:
-					probabilities = e.evaluate(image)
+					probabilities = e.evaluate(image, **kwargs)
 					current_class = np.argmax(probabilities)
 					new_score = base_score[target_class]
 					print(str(e.evaluation_count) + "/" + str(e.max_count) + " Score: {:.3e}".format(new_score),end="\t\t\t\t\t\n")
