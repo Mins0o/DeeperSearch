@@ -40,7 +40,6 @@ As **improvements**, we experimented with:
 As **expansion**, we experimented the same concept on audio classification.
   
 # Background  
-If you are familiar with **adversarial attack** on **neural network**, you may skip this part.  
 - ### **Neural Network**
     A neural network can be used to classify an input to a category, and is thus used as a *classifier*. A classifier can be trained with pre-labeled dataset and used on a new data to see which class it belongs to.  
     It is called a neural network since the internal structure is mimicked from actual neural network.  
