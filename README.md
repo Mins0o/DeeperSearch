@@ -59,7 +59,7 @@ Using your command line, execute the program with python.
 `python testDeepSearch.py`  
 This will run the code for imagenet attack as default. More options include:  
 `python testDeepSearch.py --cifar` : Which runs the algorithm on a defended resnet classifier  
-`python testDeepSearch.py --cifar --undef` : Runs the fastest attack, on an undefended resnet classifier.
+`python testDeepSearch.py --cifar --undef` : Runs the fastest attack, on an undefended resnet classifier.  
 `python testDeepSearch.py --targeted 1 --target [targetnumber]` : Target number is the number of the class you want to target to. Cifar dataset has 0 to 9 values, and imagenet has 0 to 999 values.  
 `python testDeepSearch.py --proba 0` : This will run the categorical attack.  
 `python testDeepSearch.py --spectro` : This runs the algorithm on audio.  
