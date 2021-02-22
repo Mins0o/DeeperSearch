@@ -76,7 +76,7 @@ def deepSearch(cifar_, spectro_, image, label, model, distortion_cap, group_size
 		success = not current_class == original_class
 	else:
 		print("  Target class: {}".format(e.idx2name(target)))
-		rel_eval = lambda image :e.targeted_evaluate(image, target, proba)
+		rel_eval = lambda image :e.targeted_evaluate(image, target, proba, **kwargs)
 		while current_class!=target and e.evaluation_count < max_calls:
 			# Algorithm 2: line 2 
 			grouping = group_generation(img_size, group_size, options = "square")
@@ -96,7 +96,7 @@ def deepSearch(cifar_, spectro_, image, label, model, distortion_cap, group_size
 					if verbose:
 						print("\nGroup size: {}".format(group_size))
 				current_image = mutated_image
-				current_class = np.argmax(e.evaluate(current_image))
+				current_class = np.argmax(e.evaluate(current_image,**kwargs))
 		success = current_class == target
 	
 	counts = e.evaluation_count

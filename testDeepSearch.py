@@ -74,7 +74,7 @@ if cifar_:
 elif spectro_:
 	from model_interfaces.spectroWrapper import *
 	target_set = range(50)
-	log_entry += "spetcro"
+	log_entry += "spectro"
 	img_x, img_y = 103, -1
 	#img_x, img_y = 480, 640
 	grs = 50
@@ -120,4 +120,4 @@ with open(path+"log.txt","w") as log_path:
 			print("Attack Succeeded with",ret[2],"queries, success rate is\t",100*succ/tot)
 		else:
 			print("Attack Failed using",ret[2],"queries, success rate is\t",100*succ/tot)
-		dump(Data,open(path+"data.pkl","wb"))
+	dump(Data,open(path+"data.pkl","wb"))

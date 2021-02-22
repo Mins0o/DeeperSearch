@@ -9,7 +9,7 @@ import torch.nn as nn
 
 #DEFINE root dir
 root = "../audios"
-classes = ['cat', 'dog', 'parrot', 'human', 'kid']
+classes = ['cat', 'dog', 'kid', 'parrot']
 num_classes = len(classes)
 
 dataset = datasets.ImageFolder(

@@ -40,7 +40,7 @@ class CompatModel:
     def __init__(self):
         ############################################################
         self.model = resnet50()
-        self.model.fc = torch.nn.Linear(self.model.fc.in_features, 5) 
+        self.model.fc = torch.nn.Linear(self.model.fc.in_features, 4) 
         self.model.load_state_dict(torch.load('./model_interfaces/audio_classifier/model_librosa_resnet50.pt', map_location=torch.device('cpu')))
         ############################################################
         self.model.cpu()
@@ -91,7 +91,7 @@ def sig2spec(Sxx_dB, j):
     return image[:,:,:3]
 
 classes = ['cat', 'dog', 'human', 'kid', 'parrot'] # add more in the correct order of class 0, 1, ...
-items_per_class= 3
+items_per_class= 20
 inds = range(8,8+items_per_class)
 
 x_test=[]

@@ -29,7 +29,7 @@ class Evaluator:
 		CIFAR	(0~10)
 		"""
 		cifar_names = ["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
-		audio_names = ["Cat", "dog", "parrot", "human", "kid"]
+		audio_names = ['cat', 'dog', 'kid', 'parrot']
 		if self.cifar_:
 			return(cifar_names[class_index])
 		elif self.spectro_:
@@ -64,7 +64,7 @@ class Evaluator:
 				self.top_rank( # Only top few categories are left with higher nmber for higher rank
 					self.model.predict(
 						# Random noise is added to test categorical confidence
-						img + np.random.normal(0, 14/256, shape) 
+						img + np.random.normal(0, 14/256, shape), **kwargs 
 					)[0]
 				).reshape(-1).tolist() for i in range(50)]
 			# Frequency distribution is used as output.
@@ -98,7 +98,7 @@ class Evaluator:
 		This is just like regualr evaluate(), with a little more to detect the target has been reached.
 		It outputs absolute probabilities until target class is most prominent.
 		"""
-		prob = self.evaluate(image, proba)
+		prob = self.evaluate(image, proba, **kwargs)
 		if np.argmax(prob) == target:
 			return -prob
 		return 1/prob
