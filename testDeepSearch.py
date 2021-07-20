@@ -73,7 +73,7 @@ if cifar_:
 	batch_size = 64
 elif spectro_:
 	from model_interfaces.spectroWrapper import *
-	target_set = range(50)
+	target_set = range(80)
 	log_entry += "spectro"
 	img_x, img_y = 103, -1
 	#img_x, img_y = 480, 640
@@ -82,7 +82,7 @@ elif spectro_:
 	distrotion = 20
 else:
 	from model_interfaces.imgntWrapper import *
-	target_set = range(50)
+	target_set = range(80)
 	log_entry += "Imagenet "
 
 # Creating folder to store results
@@ -100,7 +100,7 @@ with open(path+"log.txt","w") as log_path:
 	tot=0
 	print("group_size ",grs," batch_size ", batch_size)
 	print(log_entry)
-	for j in tqdm(target_set[:50]):
+	for j in target_set[58:80]:
 		print("\nStarting attack on image", tot, " ", j)
 		tot+=1
 		#def deepSearch(cifar_, image, label, model, distortion_cap, 
@@ -108,7 +108,7 @@ with open(path+"log.txt","w") as log_path:
 		#	targeted = False, target = None, proba = True):
 		kwargs = {'j': j}
 		ret = deepSearch(cifar_, spectro_, x_test[j], y_test[j], mymodel, distortion/256, 
-			group_size = grs, max_calls = 10000, batch_size = batch_size, verbose = True, 
+			group_size = grs, max_calls = 10000, batch_size = batch_size, verbose = False, 
 			targeted = targeted, target = target, proba = proba, **kwargs)
 		if spectro_:
 			dump(ret[1].reshape(1,img_x,img_y),open(path+classes[j//items_per_class]+"_"+"{:05d}".format(inds[j%items_per_class])+".pkl","wb"))

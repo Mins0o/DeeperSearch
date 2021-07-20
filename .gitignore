@@ -13,3 +13,4 @@ checkpoint-79000.data-00000-of-00001
 /model_interfaces/audio_classifier/intermediary/parrot/
 /tempResults/
 *.DS_Store
+.vs*

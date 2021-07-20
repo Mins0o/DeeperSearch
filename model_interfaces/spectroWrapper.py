@@ -41,9 +41,9 @@ class CompatModel:
         ############################################################
         self.model = resnet50()
         self.model.fc = torch.nn.Linear(self.model.fc.in_features, 4) 
-        self.model.load_state_dict(torch.load('./model_interfaces/audio_classifier/model_librosa_resnet50.pt', map_location=torch.device('cpu')))
+        self.model.load_state_dict(torch.load('./model_interfaces/audio_classifier/model_librosa_resnet50.pt', map_location=torch.device('cuda')))
         ############################################################
-        self.model.cpu()
+        self.model.cuda()
         self.model.eval()
         self.calls=0
     def predict(self, sigs, **kwargs):
@@ -54,7 +54,7 @@ class CompatModel:
         with torch.no_grad():
             #images = Image.fromarray(np.uint8(images[:,:,:3] * 256 - 0.5))
             images = Image.fromarray(images[:,:,:3])
-            t_images = transform(images).cpu()             
+            t_images = transform(images).cuda()             
             res=self.model(t_images[None, ...].float())
             res=torch.nn.functional.softmax(res,dim=1)
         model_output = res.cpu().detach().numpy()
@@ -90,7 +90,7 @@ def sig2spec(Sxx_dB, j):
     image = np.array(pil_image)
     return image[:,:,:3]
 
-classes = ['cat', 'dog', 'human', 'kid', 'parrot'] # add more in the correct order of class 0, 1, ...
+classes = ['cat', 'dog', 'kid', 'parrot'] # add more in the correct order of class 0, 1, ...
 items_per_class= 20
 inds = range(8,8+items_per_class)
 
@@ -107,3 +107,5 @@ if INDICES=="ALL":
     x_test.append(np.stack([read_wave(i, label)[0] for i in tqdm(range(100))]).tolist())
     y_test.append(j*np.ones(len(x_test)).tolist())
     ps += [read_wave(i, label)[1] for i in range(100)]
+
+print(x_test[0].shape)
